@@ -173,6 +173,21 @@ body {
   filter: brightness(1.1); /* Se hace un poco más brillante */
 }
 
+.letra-img1:hover {
+  transform: scale(1.1) translateY(-10px) rotate(15deg); /* Se agranda, sube un poco y gira */
+  filter: brightness(1.1); /* Se hace un poco más brillante */
+}
+
+.letra-img2:hover {
+  transform: scale(1.1) translateY(-10px) rotate(15deg); /* Se agranda, sube un poco y gira */
+  filter: brightness(1.1); /* Se hace un poco más brillante */
+}
+
+.letra-img3:hover {
+  transform: scale(1.1) translateY(-10px) rotate(15deg); /* Se agranda, sube un poco y gira */
+  filter: brightness(1.1); /* Se hace un poco más brillante */
+}
+
 .pag1-link {
   margin-top: 0; 
   text-decoration: none;
