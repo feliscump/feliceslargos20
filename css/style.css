@@ -295,7 +295,7 @@ body {
   bottom: 115px;
   left: 35px;
   z-index: 21;
-  pointer-events: auto; /* Permitimos clics en el gato para el hover */
+  pointer-events: auto; /* Permite activar el hover al pasar el cursor */
   transform-origin: bottom center;
   transition: transform 0.1s ease-out;
 }
@@ -306,13 +306,13 @@ body {
 
 /* 2. Bocadillo de texto ABAJO Y GIGANTE */
 .gato-texto {
-  width: 800px; 
-  max-width: 75vw; 
+  width: 800px;
+  max-width: 75vw;
   height: auto;
   bottom: -25px;
   left: 0;
   z-index: 22;
-  pointer-events: none; 
+  pointer-events: none;
 }
 
 /* 3. Burbuja de puntos (Esta SÍ tiene que recibir clics) */
@@ -325,15 +325,11 @@ body {
   z-index: 23;
   pointer-events: auto;
   transition: transform 0.2s ease;
-  transform: rotate(-10deg);
+  transform: rotate(-10deg); /* Mantiene su inclinación original estática */
   transform-origin: bottom center;
 }
 
 /* Hover de la burbuja arreglado con su rotación */
-.gato-cuerpo:hover + .gato-texto + .gato-puntos {
-  animation: burbujaSaltoLimpia 1.4s ease-in-out infinite;
-}
-
 .gato-puntos:hover {
   transform: scale(1.1) rotate(-10deg) !important;
 }
@@ -343,34 +339,16 @@ body {
     transform: translateY(0);
   }
   20% {
-    /* ¡SUBIDA RÁPIDA! Impulso explosivo hacia arriba */
+    /* Subida rápida y explosiva */
     transform: translateY(-50px);
   }
   35% {
-    /* ¡BAJADA RÁPIDA! Cae a plomo inmediatamente */
+    /* Bajada a plomo inmediata */
     transform: translateY(0);
   }
   100% {
-    /* Pausa estática en el suelo antes del siguiente ciclo */
+    /* Pausa estática en el suelo */
     transform: translateY(0);
-  }
-}
-
-@keyframes burbujaSaltoLimpia {
-  0% {
-    transform: translateY(0) rotate(-10deg);
-  }
-  20% {
-    /* Sube rápido a la par que el gato */
-    transform: translateY(-45px) rotate(-10deg);
-  }
-  35% {
-    /* Baja rápido a su posición original */
-    transform: translateY(0) rotate(-10deg);
-  }
-  100% {
-    /* Pausa estática coordinada */
-    transform: translateY(0) rotate(-10deg);
   }
 }
 
