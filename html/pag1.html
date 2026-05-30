@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="../etc/disco.png" />
+  <title>.✦ ݁˖</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="page-fade">
+
+  <!-- MÚSICA -->
+  <audio id="musica" loop>
+    <source src="../etc/musica1.mp3" type="audio/mpeg" />
+  </audio>
+  <button class="music-btn" id="musicBtn" onclick="toggleMusica()">🔇 Música</button>
+  <input class="musica-barra" type="range" id="volumen" min="0" max="1" step="0.01" value="0.3"
+    oninput="document.getElementById('musica').volume = this.value" />
+
+  <!-- OVERLAY DE TRANSICIÓN -->
+  <div id="overlay-transicion"></div>
+
+  <!-- ESCENA -->
+  <div class="escena">
+
+    <!-- BURBUJAS IZQUIERDA -->
+    <div class="columna-burbujas izquierda">
+      <div class="burbuja burbuja-1" onclick="abrirModal('../etc/msg1.png')">
+        <img src="../etc/azul.png" alt="foto 1" />
+      </div>
+    </div>
+
+    <!-- IMAGEN CENTRAL + LINK -->
+    <div class="central-wrapper">
+      <div class="imagen-central">
+        <img src="../etc/1.png" alt="imagen principal" />
+      </div>
+
+      <!-- IMAGEN PEQUEÑA DEBAJO -->
+      <div class="pag2-link" id="pag2-btn" onclick="irAPag2()">
+        <img src="../etc/icon.png" alt="ir a página 2" />
+      </div>
+    </div>
+
+    <!-- BURBUJAS DERECHA -->
+    <div class="columna-burbujas derecha">
+      <div class="burbuja burbuja-2" onclick="abrirModal('../etc/msg3.png')">
+        <img src="../etc/tarta.png" alt="foto 2" />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal()">
+    <div class="modal-contenido" onclick="event.stopPropagation()">
+      <button class="modal-cerrar" onclick="cerrarModal()">✕</button>
+      <img id="modalImg" src="" alt="foto ampliada" />
+    </div>
+  </div>
+
+  <!-- BOTÓN VOLVER -->
+  <button class="btn-volver" onclick="volverAlInicio()">← BACK</button>
+
+  <!-- FECHA -->
+  <img class="fecha" src="../etc/fecha.png" alt="fecha" />
+
+  <!-- SCRIPTS -->
+  <script src="../js/cumple.js"></script>
+  <script src="../js/sobre.js"></script>
+  <script src="../js/pag1.js"></script>
+
+  <!-- MÚSICA: mantener estado entre páginas -->
+  <script>
+    window.addEventListener('load', () => {
+      const musica = document.getElementById('musica');
+      const barra  = document.getElementById('volumen');
+
+      const tiempoGuardado  = localStorage.getItem('musicaTiempo');
+      const volumenGuardado = localStorage.getItem('musicaVolumen');
+      const estabaSonando   = localStorage.getItem('musicaSonando');
+
+      if (tiempoGuardado)  musica.currentTime = parseFloat(tiempoGuardado);
+      const vol = volumenGuardado !== null ? parseFloat(volumenGuardado) : 0.3;
+      musica.volume = vol;
+      barra.value   = vol;
+
+      if (estabaSonando === 'true') {
+        musica.play().catch(() => {});
+      }
+    });
+
+    document.getElementById('volumen').addEventListener('input', (e) => {
+      localStorage.setItem('musicaVolumen', e.target.value);
+    });
+  </script>
+
+</body>
+</html>
